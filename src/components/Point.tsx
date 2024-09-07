@@ -46,18 +46,20 @@ export const Point = ({marker, setMarkers, index}: PointProps) => {
             <div className='flex'>
                 <div className="grid grid-cols-[1fr,2fr] grid-rows-2 gap-1 min-w-64">
                     <div>Longitude</div>
-                    <input
-                        className={`[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none p-1 rounded`}
-                        min={-180}
-                        max={180}
-                        type="number" value={longitude} onChange={onLongitudeChange}/>
+                    <input type="number"
+                           className={`[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none p-1 rounded`}
+                           max={180}
+                           min={-180}
+                           value={longitude}
+                           onChange={onLongitudeChange}/>
 
                     <div>Latitude</div>
                     <input type="number"
-                           min={-90}
-                           max={90}
                            className={`[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none p-1 rounded`}
-                           value={latitude} onChange={onLatitudeChange}/>
+                           max={90}
+                           min={-90}
+                           value={latitude}
+                           onChange={onLatitudeChange}/>
                 </div>
                 <div className='flex justify-center w-[50px]'>
                     <button onClick={onRemoveClick} className='hover:scale-125'>

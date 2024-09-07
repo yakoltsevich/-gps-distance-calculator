@@ -4,6 +4,10 @@ import mapboxgl, {MapMouseEvent, Map, Marker} from '!mapbox-gl'; // eslint-disab
 import "mapbox-gl/dist/mapbox-gl.css";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAP_TOKEN
+const GDANSK_COORDINATES = {
+    latitude: '54.35',
+    longitude: '18.63'
+}
 
 type MapComponentProps = {
     markers: Marker[],
@@ -12,9 +16,9 @@ type MapComponentProps = {
 }
 export const MapComponent = ({setMarkers, map}: MapComponentProps) => {
     const mapContainer = useRef(null);
-    const [lng, setLng] = useState('18.63');
-    const [lat, setLat] = useState('54.35');
-    const [zoom, setZoom] = useState('10.2');
+    const [lng, setLng] = useState<string>(GDANSK_COORDINATES.longitude);
+    const [lat, setLat] = useState<string>(GDANSK_COORDINATES.latitude);
+    const [zoom, setZoom] = useState('11');
 
     useEffect(() => {
         if (map.current) return; // initialize map only once
@@ -43,6 +47,10 @@ export const MapComponent = ({setMarkers, map}: MapComponentProps) => {
                 setMarkers((prevMarks: Marker[]) => [...prevMarks, mark])
             });
         }
+
+        return () => {
+            map.current = false;
+        };
     }, [map, lat, lng, zoom, setMarkers]);
 
     return (
